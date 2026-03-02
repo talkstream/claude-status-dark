@@ -40,15 +40,23 @@ html, body, body.status, body.status.index {
 .border-color, body.status .layout-content.status .border-color { border-color: #3a3734 !important; }
 
 /* Masthead */
-.masthead, .masthead.has-logo, .masthead-container, .masthead-container.basic {
-  background-color: #242220 !important;
-  border-bottom: 1px solid #3a3734 !important;
+.masthead, .masthead.has-logo {
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+.masthead-container, .masthead-container.basic {
+  background-color: transparent !important;
+  border-bottom: none !important;
 }
 .masthead .logo-container img, .masthead .logo-container svg {
   filter: brightness(0) invert(1) sepia(0.1) saturate(0.5) brightness(0.9);
 }
 .show-updates-dropdown, .subscribe-text-full, .subscribe-text-short {
-  color: #e8e4de !important; border-color: #3a3734 !important;
+  color: #e8e4de !important;
+  background-color: #242220 !important;
+  border-color: #3a3734 !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
 }
 .updates-dropdown, .updates-dropdown-section, div[id^="updates-dropdown"] .updates-dropdown-section {
   background-color: #242220 !important; color: #e8e4de !important;

@@ -42,11 +42,15 @@ body.status .layout-content.status .border-color {
 
 /* --- 2. Masthead / header --- */
 .masthead,
-.masthead.has-logo,
+.masthead.has-logo {
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+
 .masthead-container,
 .masthead-container.basic {
-  background-color: #242220 !important;
-  border-bottom: 1px solid #3a3734 !important;
+  background-color: transparent !important;
+  border-bottom: none !important;
 }
 
 .masthead .logo-container img,
@@ -59,7 +63,10 @@ body.status .layout-content.status .border-color {
 .subscribe-text-full,
 .subscribe-text-short {
   color: #e8e4de !important;
+  background-color: #242220 !important;
   border-color: #3a3734 !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
 }
 
 /* Subscribe dropdown panel */
