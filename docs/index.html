@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Claude Status Dark — Install</title>
+  <meta name="description" content="Dark mode for status.claude.com. Warm colors, easy on the eyes, one click to install.">
+  <meta property="og:title" content="Claude Status Dark">
+  <meta property="og:description" content="Dark mode for the Claude status page. Warm colors. Easy on the eyes.">
+  <meta property="og:url" content="https://talkstream.github.io/claude-status-dark/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Claude Status Dark">
+  <meta name="twitter:description" content="Dark mode for status.claude.com — warm palette, one click install.">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -24,19 +32,9 @@
       text-align: center;
     }
 
-    /* Logo */
-    .logo {
-      font-size: 48px;
-      margin-bottom: 8px;
-      color: #c8a97a;
-    }
+    .logo { font-size: 48px; margin-bottom: 8px; color: #c8a97a; }
 
-    h1 {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #e8e4de;
-    }
+    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #e8e4de; }
 
     .subtitle {
       font-size: 16px;
@@ -45,7 +43,7 @@
       line-height: 1.5;
     }
 
-    /* Before / After preview */
+    /* Before / After */
     .preview {
       display: flex;
       gap: 12px;
@@ -69,15 +67,8 @@
       letter-spacing: 0.5px;
     }
 
-    .preview-card.before .label {
-      background: #faf9f5;
-      color: #87867f;
-    }
-
-    .preview-card.after .label {
-      background: #242220;
-      color: #9b9790;
-    }
+    .preview-card.before .label { background: #faf9f5; color: #87867f; }
+    .preview-card.after .label { background: #242220; color: #9b9790; }
 
     .preview-card .mock {
       padding: 16px;
@@ -86,15 +77,8 @@
       line-height: 1.8;
     }
 
-    .preview-card.before .mock {
-      background: #ffffff;
-      color: #141413;
-    }
-
-    .preview-card.after .mock {
-      background: #242220;
-      color: #e8e4de;
-    }
+    .preview-card.before .mock { background: #ffffff; color: #141413; }
+    .preview-card.after .mock { background: #242220; color: #e8e4de; }
 
     .dot {
       display: inline-block;
@@ -108,63 +92,150 @@
     .dot.green { background: #8cc63f; }
     .dot.yellow { background: #fbb44c; }
     .dot.gray-light { background: #b0aea5; }
-    .dot.gray-dark { background: #5a5852; }
 
-    .mock-bar {
-      height: 6px;
-      border-radius: 3px;
-      margin: 4px 0;
-    }
-
+    .mock-bar { height: 6px; border-radius: 3px; margin: 4px 0; }
     .preview-card.before .mock-bar { background: #dedcd1; }
     .preview-card.after .mock-bar { background: #3a3734; }
 
-    .mock-text-dim {
-      opacity: 0.5;
-      font-size: 10px;
+    .mock-text-dim { opacity: 0.5; font-size: 10px; }
+
+    /* Install wizard */
+    .install-section { margin-bottom: 32px; }
+
+    .detected {
+      font-size: 12px;
+      color: #8cc63f;
+      margin-bottom: 16px;
     }
 
-    /* Install section */
-    .install-section {
-      margin-bottom: 32px;
+    .install-steps-wizard {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 420px;
+      margin: 0 auto 20px;
     }
 
-    .browser-label {
-      font-size: 13px;
-      color: #9b9790;
-      margin-bottom: 12px;
-    }
-
-    .browser-icon {
-      font-size: 24px;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
-
-    .install-btn {
-      display: inline-flex;
+    .wizard-step {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 16px 40px;
-      font-size: 18px;
-      font-weight: 600;
-      color: #1a1816;
-      background: linear-gradient(135deg, #c8a97a, #e0c99a);
-      border: none;
+      gap: 14px;
+      text-align: left;
+      padding: 14px 18px;
+      background: #242220;
+      border: 1px solid #3a3734;
       border-radius: 12px;
+      transition: border-color 0.2s, opacity 0.3s;
+    }
+
+    .wizard-step.active {
+      border-color: #c8a97a;
+    }
+
+    .wizard-step.done {
+      border-color: #8cc63f;
+      opacity: 0.7;
+    }
+
+    .wizard-step .step-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      background: #2a2826;
+      border: 2px solid #3a3734;
+      color: #9b9790;
+      transition: all 0.2s;
+    }
+
+    .wizard-step.active .step-icon {
+      border-color: #c8a97a;
+      color: #c8a97a;
+    }
+
+    .wizard-step.done .step-icon {
+      border-color: #8cc63f;
+      background: #8cc63f;
+      color: #1a1816;
+    }
+
+    .wizard-step .step-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .wizard-step .step-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8e4de;
+      margin-bottom: 2px;
+    }
+
+    .wizard-step .step-desc {
+      font-size: 12px;
+      color: #9b9790;
+      line-height: 1.4;
+    }
+
+    .wizard-step .step-btn {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s;
-      margin-bottom: 12px;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+      display: inline-block;
     }
 
-    .install-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(200, 169, 122, 0.3);
+    .wizard-step .step-btn:hover {
+      transform: translateY(-1px);
     }
 
-    .install-btn:active {
-      transform: translateY(0);
+    .step-btn.btn-manager {
+      background: #4a9ce8;
+      color: #fff;
+    }
+
+    .step-btn.btn-install {
+      background: linear-gradient(135deg, #c8a97a, #e0c99a);
+      color: #1a1816;
+    }
+
+    .step-btn.btn-disabled {
+      background: #3a3734;
+      color: #5a5852;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .step-btn.btn-install:hover {
+      box-shadow: 0 4px 16px rgba(200, 169, 122, 0.3);
+    }
+
+    /* "I already have it" link */
+    .skip-link {
+      font-size: 12px;
+      color: #5a5852;
+      cursor: pointer;
+      border: none;
+      background: none;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .skip-link:hover {
+      color: #9b9790;
     }
 
     .install-hint {
@@ -178,50 +249,7 @@
       text-decoration: none;
     }
 
-    .install-hint a:hover {
-      color: #c8a97a;
-    }
-
-    /* Steps */
-    .steps {
-      text-align: left;
-      margin: 24px auto 40px;
-      max-width: 480px;
-    }
-
-    .step {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 20px;
-      align-items: flex-start;
-    }
-
-    .step-num {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      background: #2a2826;
-      border: 1px solid #3a3734;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 14px;
-      color: #c8a97a;
-    }
-
-    .step-text {
-      padding-top: 4px;
-      font-size: 15px;
-      line-height: 1.5;
-      color: #e8e4de;
-    }
-
-    .step-text .dim {
-      color: #9b9790;
-      font-size: 13px;
-    }
+    .install-hint a:hover { color: #c8a97a; }
 
     /* Divider */
     .divider {
@@ -230,61 +258,68 @@
       margin: 32px 0;
     }
 
-    /* Alt browsers */
-    .alt-section {
+    /* Share / Virality */
+    .share-section {
       margin-bottom: 32px;
     }
 
-    .alt-section h2 {
-      font-size: 18px;
-      margin-bottom: 16px;
+    .share-section h2 {
+      font-size: 20px;
+      margin-bottom: 6px;
       color: #e8e4de;
     }
 
-    .alt-cards {
+    .share-tagline {
+      font-size: 14px;
+      color: #9b9790;
+      margin-bottom: 20px;
+    }
+
+    .share-buttons {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
-    .alt-card {
-      background: #242220;
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
       border: 1px solid #3a3734;
       border-radius: 10px;
-      padding: 16px 20px;
-      text-align: center;
-      min-width: 160px;
-      flex: 1;
-      max-width: 200px;
-    }
-
-    .alt-card .alt-icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .alt-card .alt-name {
-      font-size: 14px;
-      font-weight: 600;
+      background: #242220;
       color: #e8e4de;
-      margin-bottom: 4px;
-    }
-
-    .alt-card .alt-desc {
-      font-size: 12px;
-      color: #9b9790;
-      line-height: 1.4;
-    }
-
-    .alt-card a {
-      color: #4a9ce8;
       text-decoration: none;
-      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s, background 0.15s;
     }
 
-    .alt-card a:hover {
-      color: #c8a97a;
+    .share-btn:hover {
+      border-color: #c8a97a;
+      background: #2a2826;
+      transform: translateY(-1px);
+    }
+
+    .share-btn .share-icon {
+      font-size: 16px;
+    }
+
+    .share-btn.x-btn:hover { border-color: #e8e4de; }
+    .share-btn.reddit-btn:hover { border-color: #ff4500; }
+    .share-btn.copy-btn:hover { border-color: #8cc63f; }
+    .share-btn.copy-btn.copied {
+      border-color: #8cc63f;
+      color: #8cc63f;
+    }
+
+    .share-counter {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #5a5852;
     }
 
     /* Footer */
@@ -301,30 +336,17 @@
       text-decoration: none;
     }
 
-    footer a:hover {
-      color: #c8a97a;
-    }
-
-    /* Detected browser highlight */
-    .detected {
-      display: none;
-      font-size: 12px;
-      color: #8cc63f;
-      margin-bottom: 8px;
-    }
-
-    .detected.visible {
-      display: block;
-    }
+    footer a:hover { color: #c8a97a; }
 
     /* Responsive */
     @media (max-width: 520px) {
       .preview { flex-direction: column; align-items: center; }
       .preview-card { max-width: 100%; }
-      .alt-cards { flex-direction: column; align-items: center; }
-      .alt-card { max-width: 100%; }
       h1 { font-size: 26px; }
-      .install-btn { padding: 14px 32px; font-size: 16px; }
+      .wizard-step { flex-wrap: wrap; }
+      .wizard-step .step-btn { width: 100%; text-align: center; }
+      .share-buttons { flex-direction: column; align-items: center; }
+      .share-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -334,7 +356,7 @@
     <h1>Claude Status Dark</h1>
     <p class="subtitle">
       Dark mode for the Claude status page.<br>
-      Warm colors. Easy on the eyes. One click to install.
+      Warm colors. Easy on the eyes. Two clicks to install.
     </p>
 
     <!-- Before / After -->
@@ -361,15 +383,36 @@
       </div>
     </div>
 
-    <!-- Main install -->
+    <!-- Install wizard -->
     <div class="install-section">
       <div id="detected-browser" class="detected"></div>
 
-      <a id="install-btn" class="install-btn" href="#">
-        Install Dark Theme
-      </a>
+      <div class="install-steps-wizard">
+        <!-- Step 1: Get userscript manager -->
+        <div id="step-1" class="wizard-step active">
+          <div class="step-icon">1</div>
+          <div class="step-content">
+            <div class="step-title">Get <span id="manager-name">Tampermonkey</span></div>
+            <div class="step-desc">Free <span id="manager-type">extension</span> that enables userscripts</div>
+            <button id="skip-step1" class="skip-link">I already have it</button>
+          </div>
+          <a id="manager-btn" class="step-btn btn-manager" href="https://www.tampermonkey.net/" target="_blank" rel="noopener">
+            Get It Free
+          </a>
+        </div>
 
-      <div id="install-steps" class="steps" style="display:none;"></div>
+        <!-- Step 2: Install the dark theme -->
+        <div id="step-2" class="wizard-step">
+          <div class="step-icon">2</div>
+          <div class="step-content">
+            <div class="step-title">Install Dark Theme</div>
+            <div class="step-desc">Click and confirm in the popup that appears</div>
+          </div>
+          <a id="install-btn" class="step-btn btn-disabled" href="#">
+            Install
+          </a>
+        </div>
+      </div>
 
       <p class="install-hint">
         Free and open source.
@@ -379,61 +422,44 @@
 
     <hr class="divider">
 
-    <!-- Alt browsers -->
-    <div class="alt-section">
-      <h2>Other Browsers</h2>
-      <div class="alt-cards">
-        <div class="alt-card" id="card-safari">
-          <div class="alt-icon">🧭</div>
-          <div class="alt-name">Safari</div>
-          <div class="alt-desc">
-            Install <a href="https://apps.apple.com/app/userscripts/id1463298887">Userscripts</a> from App Store, then click Install above
-          </div>
-        </div>
-        <div class="alt-card" id="card-chrome">
-          <div class="alt-icon">🌐</div>
-          <div class="alt-name">Chrome</div>
-          <div class="alt-desc">
-            Install <a href="https://www.tampermonkey.net/">Tampermonkey</a>, then click Install above
-          </div>
-        </div>
-        <div class="alt-card" id="card-firefox">
-          <div class="alt-icon">🦊</div>
-          <div class="alt-name">Firefox</div>
-          <div class="alt-desc">
-            Install <a href="https://www.tampermonkey.net/">Tampermonkey</a>, then click Install above
-          </div>
-        </div>
+    <!-- Share section -->
+    <div class="share-section">
+      <h2>Make the world darker</h2>
+      <p class="share-tagline">Help fellow Claude users save their retinas. Share this page.</p>
+
+      <div class="share-buttons">
+        <a id="share-x" class="share-btn x-btn" href="#" target="_blank" rel="noopener">
+          <span class="share-icon">𝕏</span> Post on X
+        </a>
+        <a id="share-reddit" class="share-btn reddit-btn" href="#" target="_blank" rel="noopener">
+          <span class="share-icon">↗</span> Share on Reddit
+        </a>
+        <button id="share-copy" class="share-btn copy-btn">
+          <span class="share-icon">⎘</span> <span id="copy-label">Copy Link</span>
+        </button>
+      </div>
+
+      <div class="share-counter">
+        Every share saves an eyeball. Probably two, actually.
       </div>
     </div>
 
     <hr class="divider">
 
-    <!-- How it works -->
-    <div class="steps">
-      <h2 style="text-align:center; margin-bottom:20px; font-size:18px;">How It Works</h2>
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">
-          Install a userscript manager for your browser
-          <div class="dim">Safari → Userscripts (free, App Store) · Chrome/Firefox → Tampermonkey</div>
-        </div>
+    <!-- How it works (collapsed FAQ style) -->
+    <details style="text-align:left; max-width:480px; margin:0 auto 32px;">
+      <summary style="cursor:pointer; font-size:16px; font-weight:600; color:#e8e4de; padding:8px 0;">
+        How does it work?
+      </summary>
+      <div style="padding:12px 0; color:#9b9790; font-size:14px; line-height:1.7;">
+        A <strong style="color:#e8e4de;">userscript manager</strong> is a tiny browser extension
+        that can inject custom styles into websites. We use it to replace the bright white
+        theme on <code style="color:#c8a97a;">status.claude.com</code> with a warm dark palette.<br><br>
+        The script runs only on the Claude status page &mdash; nowhere else. It's
+        <a href="https://github.com/talkstream/claude-status-dark" style="color:#4a9ce8; text-decoration:none;">fully open source</a>,
+        so you can inspect every line.
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">
-          Click the <strong>Install Dark Theme</strong> button above
-          <div class="dim">Your userscript manager will ask you to confirm</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">
-          Open <a href="https://status.claude.com" style="color:#4a9ce8; text-decoration:none;">status.claude.com</a> — it's dark now!
-          <div class="dim">Works automatically every time you visit</div>
-        </div>
-      </div>
-    </div>
+    </details>
   </div>
 
   <footer>
@@ -445,8 +471,17 @@
   <script>
     (function() {
       var USERSCRIPT_URL = 'https://raw.githubusercontent.com/talkstream/claude-status-dark/main/userscript/claude-status-dark.user.js';
+      var PAGE_URL = 'https://talkstream.github.io/claude-status-dark/';
+      var SHARE_TEXT = 'Dark mode for the Claude status page — warm colors, one-click install. Your retinas will thank you.';
 
-      var btn = document.getElementById('install-btn');
+      // Elements
+      var step1 = document.getElementById('step-1');
+      var step2 = document.getElementById('step-2');
+      var managerBtn = document.getElementById('manager-btn');
+      var installBtn = document.getElementById('install-btn');
+      var skipBtn = document.getElementById('skip-step1');
+      var managerNameEl = document.getElementById('manager-name');
+      var managerTypeEl = document.getElementById('manager-type');
       var detected = document.getElementById('detected-browser');
 
       // Detect browser
@@ -454,28 +489,71 @@
       var browserName = 'your browser';
       var managerName = 'Tampermonkey';
       var managerUrl = 'https://www.tampermonkey.net/';
+      var managerType = 'extension';
 
       if (ua.indexOf('Safari') !== -1 && ua.indexOf('Chrome') === -1) {
         browserName = 'Safari';
         managerName = 'Userscripts';
         managerUrl = 'https://apps.apple.com/app/userscripts/id1463298887';
+        managerType = 'app (free on App Store)';
       } else if (ua.indexOf('Firefox') !== -1) {
         browserName = 'Firefox';
+        managerUrl = 'https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/';
       } else if (ua.indexOf('Edg') !== -1) {
         browserName = 'Edge';
+        managerUrl = 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd';
       } else if (ua.indexOf('Chrome') !== -1) {
         browserName = 'Chrome';
+        managerUrl = 'https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo';
       }
 
       detected.textContent = 'Detected: ' + browserName;
-      detected.classList.add('visible');
+      managerNameEl.textContent = managerName;
+      managerTypeEl.textContent = managerType;
+      managerBtn.href = managerUrl;
 
-      // Set install button
-      btn.href = USERSCRIPT_URL;
+      // Step 1 → Step 2 transition
+      function activateStep2() {
+        step1.classList.remove('active');
+        step1.classList.add('done');
+        step1.querySelector('.step-icon').textContent = '✓';
+        skipBtn.style.display = 'none';
 
-      btn.addEventListener('click', function(e) {
-        // Userscript managers intercept .user.js URLs automatically
-        // If no manager installed, the raw JS file will download — harmless
+        step2.classList.add('active');
+        installBtn.href = USERSCRIPT_URL;
+        installBtn.classList.remove('btn-disabled');
+        installBtn.classList.add('btn-install');
+      }
+
+      // When they click the manager link, wait a moment then activate step 2
+      managerBtn.addEventListener('click', function() {
+        setTimeout(activateStep2, 1500);
+      });
+
+      // Skip link for users who already have a manager
+      skipBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        activateStep2();
+      });
+
+      // Share buttons
+      var shareX = document.getElementById('share-x');
+      var shareReddit = document.getElementById('share-reddit');
+      var shareCopy = document.getElementById('share-copy');
+      var copyLabel = document.getElementById('copy-label');
+
+      shareX.href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT) + '&url=' + encodeURIComponent(PAGE_URL);
+      shareReddit.href = 'https://www.reddit.com/submit?url=' + encodeURIComponent(PAGE_URL) + '&title=' + encodeURIComponent('Claude Status Dark — dark mode for status.claude.com');
+
+      shareCopy.addEventListener('click', function() {
+        navigator.clipboard.writeText(PAGE_URL).then(function() {
+          copyLabel.textContent = 'Copied!';
+          shareCopy.classList.add('copied');
+          setTimeout(function() {
+            copyLabel.textContent = 'Copy Link';
+            shareCopy.classList.remove('copied');
+          }, 2000);
+        });
       });
     })();
   </script>
