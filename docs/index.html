@@ -304,6 +304,55 @@
       line-height: 1.6;
     }
 
+    /* ====== SUCCESS STATE ====== */
+    .success-banner {
+      display: none;
+      max-width: 420px;
+      margin: 0 auto 24px;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, rgba(140, 198, 63, 0.1), rgba(200, 169, 122, 0.08));
+      border: 1px solid rgba(140, 198, 63, 0.3);
+      border-radius: 14px;
+      text-align: center;
+      animation: fade-in-up 0.5s ease-out;
+    }
+
+    .success-banner.visible { display: block; }
+
+    .success-emoji {
+      font-size: 40px;
+      margin-bottom: 8px;
+      animation: celebrate 0.6s ease-out;
+    }
+
+    @keyframes celebrate {
+      0% { transform: scale(0) rotate(-20deg); }
+      50% { transform: scale(1.3) rotate(5deg); }
+      100% { transform: scale(1) rotate(0); }
+    }
+
+    .success-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #8cc63f;
+      margin-bottom: 6px;
+    }
+
+    .success-message {
+      font-size: 13px;
+      color: #9b9790;
+      line-height: 1.5;
+    }
+
+    .success-message a {
+      color: #4a9ce8;
+      text-decoration: none;
+    }
+
+    /* Hide wizard when installed */
+    .install-section.installed .install-steps-wizard,
+    .install-section.installed .fallback { display: none; }
+
     /* ====== FALLBACK ====== */
     .fallback {
       display: none;
@@ -541,6 +590,16 @@
 
     <!-- Install wizard -->
     <div class="install-section fade-in delay-4">
+      <div id="success-banner" class="success-banner">
+        <div class="success-emoji">✦</div>
+        <div class="success-title">Dark mode is active!</div>
+        <div class="success-message">
+          Your retinas are now safe. Go ahead,
+          <a href="https://status.claude.com">check if Claude is down</a>
+          — in style.
+        </div>
+      </div>
+
       <div id="detected-browser" class="detected"></div>
 
       <div class="install-steps-wizard">
@@ -681,6 +740,27 @@
 
   <script>
     (function() {
+      // Detect if userscript is installed (it sets data-attribute on <html>)
+      function checkInstalled() {
+        return document.documentElement.getAttribute('data-claude-status-dark') === 'installed';
+      }
+
+      // Check immediately and again after a short delay (script may load async)
+      function showSuccessState() {
+        var section = document.querySelector('.install-section');
+        var banner = document.getElementById('success-banner');
+        section.classList.add('installed');
+        banner.classList.add('visible');
+      }
+
+      if (checkInstalled()) {
+        document.addEventListener('DOMContentLoaded', showSuccessState);
+      } else {
+        setTimeout(function() {
+          if (checkInstalled()) showSuccessState();
+        }, 1000);
+      }
+
       // GitHub Pages URL — correct MIME type (application/javascript)
       var USERSCRIPT_URL = 'https://talkstream.github.io/claude-status-dark/claude-status-dark.user.js';
       var PAGE_URL = 'https://talkstream.github.io/claude-status-dark/';
