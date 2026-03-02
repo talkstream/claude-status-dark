@@ -133,9 +133,29 @@ async function fetchAndRender() {
   } catch (e) {
     const list = document.getElementById('components-list');
     clearChildren(list);
-    list.appendChild(createPlaceholder(`Failed to load status: ${e.message}`, 'error-message'));
+
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = `Failed to load status: ${e.message}`;
+
+    const retryBtn = document.createElement('button');
+    retryBtn.className = 'retry-btn';
+    retryBtn.textContent = 'Retry';
+    retryBtn.addEventListener('click', fetchAndRender);
+
+    errorDiv.appendChild(document.createElement('br'));
+    errorDiv.appendChild(retryBtn);
+    list.appendChild(errorDiv);
   }
 }
+
+// Refresh button
+const refreshBtn = document.getElementById('refresh-btn');
+refreshBtn.addEventListener('click', async () => {
+  refreshBtn.classList.add('spinning');
+  await fetchAndRender();
+  refreshBtn.classList.remove('spinning');
+});
 
 // Open status page in new tab
 document.getElementById('open-page').addEventListener('click', (e) => {

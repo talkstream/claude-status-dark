@@ -176,10 +176,16 @@ div[id^="subscribe-modal"] .modal-footer, .modal-footer, .modal-footer.incident-
 }
 .modal-backdrop { background-color: #0a0908 !important; }
 input[type="text"], input[type="email"], input[type="tel"], input[type="url"],
-textarea, select, .phone-country, .full-width {
+input[type="search"], textarea, select, .phone-country, .full-width {
   background-color: #1a1816 !important; color: #e8e4de !important; border-color: #3a3734 !important;
 }
+input:focus, textarea:focus, select:focus {
+  border-color: #c8a97a !important;
+  box-shadow: 0 0 0 2px rgba(200, 169, 122, 0.2) !important;
+  outline: none !important;
+}
 input::placeholder, textarea::placeholder { color: #5a5852 !important; }
+input[type="checkbox"], input[type="radio"] { accent-color: #c8a97a; }
 .terms_and_privacy_information, .terms_and_privacy_information a, .help-block { color: #5a5852 !important; }
 
 /* Footer */

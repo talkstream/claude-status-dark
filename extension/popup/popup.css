@@ -213,13 +213,80 @@ body {
   font-style: italic;
   padding: 16px 0;
   text-align: center;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
 .error-message {
   color: #ef5555;
-  padding: 16px 0;
+  padding: 12px 14px;
   text-align: center;
   font-size: 12px;
+  background-color: rgba(239, 85, 85, 0.1);
+  border: 1px solid rgba(239, 85, 85, 0.2);
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+/* --- Animations --- */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.incidents-section:not([hidden]) {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* --- Refresh button --- */
+.refresh-btn {
+  background: none;
+  border: none;
+  color: #5a5852;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background-color 0.15s;
+  line-height: 1;
+  margin-left: auto;
+}
+
+.refresh-btn:hover {
+  color: #c8a97a;
+  background-color: rgba(200, 169, 122, 0.1);
+}
+
+.refresh-btn.spinning {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- Retry button --- */
+.retry-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #e8e4de;
+  background-color: #3a3734;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.retry-btn:hover {
+  background-color: #4a4844;
 }
 
 /* --- Footer --- */

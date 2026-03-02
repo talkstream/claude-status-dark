@@ -8,3 +8,4 @@ node_modules/
 *.backup
 coverage/
 *.zip
+reddit-post.md

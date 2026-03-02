@@ -492,6 +492,7 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="url"],
+input[type="search"],
 textarea,
 select,
 .phone-country,
@@ -501,9 +502,23 @@ select,
   border-color: #3a3734 !important;
 }
 
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #c8a97a !important;
+  box-shadow: 0 0 0 2px rgba(200, 169, 122, 0.2) !important;
+  outline: none !important;
+}
+
 input::placeholder,
 textarea::placeholder {
   color: #5a5852 !important;
+}
+
+/* Checkbox / radio accent */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #c8a97a;
 }
 
 .terms_and_privacy_information,

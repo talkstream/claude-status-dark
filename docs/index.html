@@ -560,6 +560,27 @@
     footer a { color: #9b9790; text-decoration: none; }
     footer a:hover { color: #c8a97a; }
 
+    /* ====== ACCESSIBILITY ====== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    details summary:focus-visible {
+      outline: 2px solid #c8a97a;
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #c8a97a !important;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(200, 169, 122, 0.2);
+    }
+
     /* ====== RESPONSIVE ====== */
     @media (max-width: 520px) {
       .preview { flex-direction: column; align-items: center; }
@@ -788,9 +809,25 @@
       if (checkInstalled()) {
         document.addEventListener('DOMContentLoaded', showSuccessState);
       } else {
+        // Watch for the userscript setting data-claude-status-dark attribute
+        var htmlObserver = new MutationObserver(function(mutations) {
+          for (var i = 0; i < mutations.length; i++) {
+            if (mutations[i].attributeName === 'data-claude-status-dark' && checkInstalled()) {
+              showSuccessState();
+              htmlObserver.disconnect();
+              return;
+            }
+          }
+        });
+        htmlObserver.observe(document.documentElement, { attributes: true });
+
+        // Fallback timeout for edge cases
         setTimeout(function() {
-          if (checkInstalled()) showSuccessState();
-        }, 1000);
+          if (checkInstalled()) {
+            showSuccessState();
+            htmlObserver.disconnect();
+          }
+        }, 2000);
       }
 
       // GitHub Pages URL — correct MIME type (application/javascript)
