@@ -349,9 +349,35 @@
       text-decoration: none;
     }
 
+    /* "I've installed it" button */
+    .done-link {
+      margin: 12px auto 0;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .done-btn {
+      background: none;
+      border: 1px dashed #3a3734;
+      color: #9b9790;
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .done-btn:hover {
+      border-color: #c8a97a;
+      color: #c8a97a;
+      border-style: solid;
+    }
+
     /* Hide wizard when installed */
     .install-section.installed .install-steps-wizard,
-    .install-section.installed .fallback { display: none; }
+    .install-section.installed .fallback,
+    .install-section.installed .done-link,
+    .install-section.installed #detected-browser { display: none; }
 
     /* ====== FALLBACK ====== */
     .fallback {
@@ -629,6 +655,11 @@
         </div>
       </div>
 
+      <!-- "I've installed it" confirmation -->
+      <div id="done-link" class="done-link" style="display:none;">
+        <button id="done-btn" class="done-btn">I've installed it — show me the magic ✦</button>
+      </div>
+
       <!-- Safari fallback: shown after clicking Install -->
       <div id="fallback-safari" class="fallback">
         <h3>Seeing plain text? No worries!</h3>
@@ -852,15 +883,24 @@
         activateStep2();
       });
 
-      // Show browser-specific fallback after clicking Install
+      var doneLink = document.getElementById('done-link');
+      var doneBtn = document.getElementById('done-btn');
+
+      // Show browser-specific fallback + "I've installed it" button after clicking Install
       installBtn.addEventListener('click', function() {
         setTimeout(function() {
+          doneLink.style.display = 'block';
           if (isSafari) {
             fallbackSafari.classList.add('visible');
           } else {
             fallbackOther.classList.add('visible');
           }
         }, 3000);
+      });
+
+      // "I've installed it" → show success
+      doneBtn.addEventListener('click', function() {
+        showSuccessState();
       });
 
       // Share buttons
