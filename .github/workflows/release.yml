@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package extension
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          cd extension
+          zip -r "../claude-status-dark-${TAG_NAME}.zip" . -x "icons/icon.svg"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: claude-status-dark-${{ github.ref_name }}.zip
+          generate_release_notes: true

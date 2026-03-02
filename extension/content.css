@@ -1,0 +1,471 @@
+/* ============================================================
+   Claude Status Dark — Dark theme for status.claude.com
+   Warm palette inspired by Claude's design language
+   ============================================================ */
+
+/* --- 1. Page background & base --- */
+html,
+body,
+body.page-status {
+  background-color: #1a1816 !important;
+  color: #e8e4de !important;
+}
+
+.layout-content.status.status-full {
+  background-color: #1a1816 !important;
+}
+
+/* --- 2. Masthead / header --- */
+.masthead {
+  background-color: #242220 !important;
+  border-bottom: 1px solid #3a3734 !important;
+}
+
+.masthead .masthead-logo img,
+.masthead .masthead-logo svg {
+  filter: brightness(0) invert(1) sepia(0.1) saturate(0.5) brightness(0.9);
+}
+
+.masthead-title,
+.masthead .page-title {
+  color: #e8e4de !important;
+}
+
+/* --- 3. Status banner (overall status) --- */
+.page-status .status-day .status-day-text,
+.status-page .metric-value {
+  color: #e8e4de !important;
+}
+
+.page-status .page-status-indicator {
+  border-radius: 8px;
+}
+
+.page-status .page-status-indicator.status-none {
+  background-color: #2a6b1a !important;
+  color: #e8e4de !important;
+}
+
+.page-status .page-status-indicator.status-minor {
+  background-color: #7a5a10 !important;
+  color: #e8e4de !important;
+}
+
+.page-status .page-status-indicator.status-major {
+  background-color: #8a3a1a !important;
+  color: #e8e4de !important;
+}
+
+.page-status .page-status-indicator.status-critical {
+  background-color: #8a1a1a !important;
+  color: #e8e4de !important;
+}
+
+.page-status .page-status-indicator.status-maintenance {
+  background-color: #1a4a7a !important;
+  color: #e8e4de !important;
+}
+
+/* --- 4. Component list cards --- */
+.component-container,
+.components-section,
+.components-section .component-inner-container {
+  background-color: #242220 !important;
+  border-color: #3a3734 !important;
+}
+
+.components-section .component-inner-container.status-green {
+  border-left-color: #8cc63f !important;
+}
+
+.component-group-name,
+.component-name,
+.component-group .component-group-name {
+  color: #e8e4de !important;
+}
+
+.component-group {
+  background-color: #242220 !important;
+  border-color: #3a3734 !important;
+}
+
+.component-group .component-group-header {
+  background-color: #2a2826 !important;
+  border-bottom-color: #3a3734 !important;
+}
+
+.component-group .component-inner-container {
+  border-top-color: #3a3734 !important;
+}
+
+/* --- 5. Status colors (text + icons) --- */
+.component-status {
+  color: #9b9790 !important;
+}
+
+.component-status.component-status-operational,
+.status-operational,
+.component-status[data-component-status="operational"] {
+  color: #8cc63f !important;
+}
+
+.component-status.component-status-degraded_performance,
+.status-degraded_performance,
+.component-status[data-component-status="degraded_performance"] {
+  color: #fbb44c !important;
+}
+
+.component-status.component-status-partial_outage,
+.status-partial_outage,
+.component-status[data-component-status="partial_outage"] {
+  color: #f07850 !important;
+}
+
+.component-status.component-status-major_outage,
+.status-major_outage,
+.component-status[data-component-status="major_outage"] {
+  color: #ef5555 !important;
+}
+
+.component-status.component-status-under_maintenance,
+.status-under_maintenance,
+.component-status[data-component-status="under_maintenance"] {
+  color: #4a9ce8 !important;
+}
+
+/* Status icons (SVG-based) */
+.component-status .component-status-icon svg {
+  fill: currentColor;
+}
+
+/* --- 6. Uptime SVG bars --- */
+.uptime-today-container {
+  background-color: #242220 !important;
+  border-color: #3a3734 !important;
+}
+
+.uptime-day {
+  background-color: #5a5852 !important;
+}
+
+.uptime-day.uptime-day-operational {
+  background-color: #8cc63f !important;
+}
+
+.uptime-day.uptime-day-degraded-performance {
+  background-color: #fbb44c !important;
+}
+
+.uptime-day.uptime-day-partial-outage {
+  background-color: #f07850 !important;
+}
+
+.uptime-day.uptime-day-major-outage {
+  background-color: #ef5555 !important;
+}
+
+.uptime-day.uptime-day-maintenance {
+  background-color: #4a9ce8 !important;
+}
+
+.uptime-day.uptime-day-none {
+  background-color: #5a5852 !important;
+}
+
+/* SVG rect recoloring for inline styles */
+svg rect[fill="#8cc63f"],
+svg rect[fill="#76ad2a"],
+svg rect[fill="#76AD2A"] {
+  fill: #8cc63f !important;
+}
+
+svg rect[fill="#fbb44c"],
+svg rect[fill="#faa72a"],
+svg rect[fill="#FAA72A"] {
+  fill: #fbb44c !important;
+}
+
+svg rect[fill="#f07850"],
+svg rect[fill="#e86235"],
+svg rect[fill="#E86235"] {
+  fill: #f07850 !important;
+}
+
+svg rect[fill="#ef5555"],
+svg rect[fill="#e04343"],
+svg rect[fill="#E04343"] {
+  fill: #ef5555 !important;
+}
+
+svg rect[fill="#4a9ce8"],
+svg rect[fill="#2c84db"],
+svg rect[fill="#2C84DB"] {
+  fill: #4a9ce8 !important;
+}
+
+svg rect[fill="#b0aea5"],
+svg rect[fill="#B0AEA5"] {
+  fill: #5a5852 !important;
+}
+
+svg rect[fill="#dedcd1"],
+svg rect[fill="#DEDCD1"] {
+  fill: #3a3734 !important;
+}
+
+/* Uptime percentage text */
+.uptime-percent,
+.uptime-percent-text {
+  color: #9b9790 !important;
+}
+
+.uptime-timeframe-boundary {
+  color: #9b9790 !important;
+}
+
+/* --- 7. Tooltips --- */
+#uptime-tooltip,
+.tooltip,
+.tooltip-inner,
+[data-tippy-root] .tippy-box,
+.tippy-box {
+  background-color: #2e2c2a !important;
+  color: #e8e4de !important;
+  border: 1px solid #3a3734 !important;
+  border-radius: 6px !important;
+}
+
+.tippy-arrow::before,
+.tooltip .tooltip-arrow::before {
+  border-top-color: #2e2c2a !important;
+  border-bottom-color: #2e2c2a !important;
+}
+
+/* --- 8. Incidents / scheduled maintenance --- */
+.incidents-list,
+.incident-container,
+.incidents-unresolved {
+  background-color: transparent !important;
+}
+
+.incident-title a,
+.incident-title {
+  color: #e8e4de !important;
+}
+
+.incident-title a:hover {
+  color: #c8a97a !important;
+}
+
+.incident-update-body,
+.incident-body {
+  color: #9b9790 !important;
+}
+
+.incident-update-body p,
+.incident-body p {
+  color: #9b9790 !important;
+}
+
+.incident-update-title {
+  color: #e8e4de !important;
+}
+
+.incident-update .update-title {
+  color: #e8e4de !important;
+}
+
+.incident-update .update-timestamp,
+.incident-timestamp,
+.incident-date {
+  color: #9b9790 !important;
+}
+
+.status-day .border-color {
+  border-color: #3a3734 !important;
+}
+
+.incident-history-date {
+  color: #9b9790 !important;
+}
+
+.incident-history-content {
+  border-color: #3a3734 !important;
+}
+
+/* Scheduled maintenance */
+.scheduled-incidents-container {
+  background-color: #242220 !important;
+  border-color: #3a3734 !important;
+}
+
+.scheduled-incident-inner-container {
+  background-color: #242220 !important;
+}
+
+/* --- 9. Buttons / links / subscribe --- */
+a {
+  color: #4a9ce8 !important;
+}
+
+a:hover {
+  color: #c8a97a !important;
+}
+
+.btn,
+button.btn {
+  background-color: #3a3734 !important;
+  color: #e8e4de !important;
+  border-color: #4a4844 !important;
+}
+
+.btn:hover,
+button.btn:hover {
+  background-color: #4a4844 !important;
+  color: #e8e4de !important;
+}
+
+.btn-subscribe {
+  background-color: #3a3734 !important;
+  color: #e8e4de !important;
+}
+
+/* --- 10. Modals (subscribe) --- */
+.modal-content,
+.modal-dialog .modal-content {
+  background-color: #242220 !important;
+  color: #e8e4de !important;
+  border-color: #3a3734 !important;
+}
+
+.modal-header {
+  background-color: #2a2826 !important;
+  border-bottom-color: #3a3734 !important;
+  color: #e8e4de !important;
+}
+
+.modal-header .close,
+.modal-header button.close {
+  color: #9b9790 !important;
+}
+
+.modal-body {
+  color: #e8e4de !important;
+}
+
+.modal-footer {
+  background-color: #2a2826 !important;
+  border-top-color: #3a3734 !important;
+}
+
+.modal-backdrop {
+  background-color: #0a0908 !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  background-color: #1a1816 !important;
+  color: #e8e4de !important;
+  border-color: #3a3734 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #5a5852 !important;
+}
+
+/* --- 11. Footer --- */
+.page-footer,
+.layout-footer {
+  background-color: #1a1816 !important;
+  border-top: 1px solid #3a3734 !important;
+  color: #9b9790 !important;
+}
+
+.page-footer a,
+.layout-footer a {
+  color: #9b9790 !important;
+}
+
+.page-footer a:hover,
+.layout-footer a:hover {
+  color: #c8a97a !important;
+}
+
+/* Powered by Statuspage */
+.powered-by a {
+  color: #9b9790 !important;
+}
+
+/* --- 12. Transitions --- */
+*,
+*::before,
+*::after {
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in-out;
+}
+
+/* --- 13. Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1816;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3734;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4844;
+}
+
+/* --- 14. Selection / Focus --- */
+::selection {
+  background-color: #4a3a2a !important;
+  color: #e8e4de !important;
+}
+
+:focus-visible {
+  outline-color: #c8a97a !important;
+}
+
+/* History page */
+.history-date,
+.history-item-date {
+  color: #9b9790 !important;
+}
+
+.history-item,
+.month-container {
+  border-color: #3a3734 !important;
+}
+
+/* Separator lines */
+hr,
+.separator {
+  border-color: #3a3734 !important;
+}
+
+/* Tab navigation */
+.tab-container {
+  border-bottom-color: #3a3734 !important;
+}
+
+.tab-container .tab {
+  color: #9b9790 !important;
+}
+
+.tab-container .tab.active {
+  color: #e8e4de !important;
+  border-bottom-color: #c8a97a !important;
+}

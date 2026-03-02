@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=360">
+  <link rel="stylesheet" href="popup.css">
+  <title>Claude Status</title>
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="header-title">
+        <span class="logo-icon">✦</span>
+        <h1>Claude Status</h1>
+      </div>
+      <div id="overall-status" class="overall-status loading">
+        <span class="status-dot"></span>
+        <span class="status-text">Loading…</span>
+      </div>
+    </header>
+
+    <section id="components-section" class="components-section">
+      <h2>Components</h2>
+      <div id="components-list" class="components-list">
+        <div class="loading-placeholder">Fetching status…</div>
+      </div>
+    </section>
+
+    <section id="incidents-section" class="incidents-section" hidden>
+      <h2>Active Incidents</h2>
+      <div id="incidents-list" class="incidents-list"></div>
+    </section>
+
+    <footer class="popup-footer">
+      <span id="last-updated">—</span>
+      <a href="https://status.claude.com" id="open-page">Open Status Page ↗</a>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

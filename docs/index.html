@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Status Dark — Install</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #1a1816;
+      color: #e8e4de;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 640px;
+      width: 100%;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo {
+      font-size: 48px;
+      margin-bottom: 8px;
+      color: #c8a97a;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #e8e4de;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #9b9790;
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    /* Before / After preview */
+    .preview {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      justify-content: center;
+    }
+
+    .preview-card {
+      flex: 1;
+      max-width: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #3a3734;
+    }
+
+    .preview-card .label {
+      padding: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .preview-card.before .label {
+      background: #faf9f5;
+      color: #87867f;
+    }
+
+    .preview-card.after .label {
+      background: #242220;
+      color: #9b9790;
+    }
+
+    .preview-card .mock {
+      padding: 16px;
+      font-size: 12px;
+      text-align: left;
+      line-height: 1.8;
+    }
+
+    .preview-card.before .mock {
+      background: #ffffff;
+      color: #141413;
+    }
+
+    .preview-card.after .mock {
+      background: #242220;
+      color: #e8e4de;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    .dot.green { background: #8cc63f; }
+    .dot.yellow { background: #fbb44c; }
+    .dot.gray-light { background: #b0aea5; }
+    .dot.gray-dark { background: #5a5852; }
+
+    .mock-bar {
+      height: 6px;
+      border-radius: 3px;
+      margin: 4px 0;
+    }
+
+    .preview-card.before .mock-bar { background: #dedcd1; }
+    .preview-card.after .mock-bar { background: #3a3734; }
+
+    .mock-text-dim {
+      opacity: 0.5;
+      font-size: 10px;
+    }
+
+    /* Install section */
+    .install-section {
+      margin-bottom: 32px;
+    }
+
+    .browser-label {
+      font-size: 13px;
+      color: #9b9790;
+      margin-bottom: 12px;
+    }
+
+    .browser-icon {
+      font-size: 24px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+
+    .install-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1816;
+      background: linear-gradient(135deg, #c8a97a, #e0c99a);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      margin-bottom: 12px;
+    }
+
+    .install-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 169, 122, 0.3);
+    }
+
+    .install-btn:active {
+      transform: translateY(0);
+    }
+
+    .install-hint {
+      font-size: 13px;
+      color: #5a5852;
+      line-height: 1.6;
+    }
+
+    .install-hint a {
+      color: #4a9ce8;
+      text-decoration: none;
+    }
+
+    .install-hint a:hover {
+      color: #c8a97a;
+    }
+
+    /* Steps */
+    .steps {
+      text-align: left;
+      margin: 24px auto 40px;
+      max-width: 480px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: #2a2826;
+      border: 1px solid #3a3734;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #c8a97a;
+    }
+
+    .step-text {
+      padding-top: 4px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #e8e4de;
+    }
+
+    .step-text .dim {
+      color: #9b9790;
+      font-size: 13px;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid #3a3734;
+      margin: 32px 0;
+    }
+
+    /* Alt browsers */
+    .alt-section {
+      margin-bottom: 32px;
+    }
+
+    .alt-section h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #e8e4de;
+    }
+
+    .alt-cards {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .alt-card {
+      background: #242220;
+      border: 1px solid #3a3734;
+      border-radius: 10px;
+      padding: 16px 20px;
+      text-align: center;
+      min-width: 160px;
+      flex: 1;
+      max-width: 200px;
+    }
+
+    .alt-card .alt-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .alt-card .alt-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8e4de;
+      margin-bottom: 4px;
+    }
+
+    .alt-card .alt-desc {
+      font-size: 12px;
+      color: #9b9790;
+      line-height: 1.4;
+    }
+
+    .alt-card a {
+      color: #4a9ce8;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .alt-card a:hover {
+      color: #c8a97a;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #5a5852;
+    }
+
+    footer a {
+      color: #9b9790;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #c8a97a;
+    }
+
+    /* Detected browser highlight */
+    .detected {
+      display: none;
+      font-size: 12px;
+      color: #8cc63f;
+      margin-bottom: 8px;
+    }
+
+    .detected.visible {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 520px) {
+      .preview { flex-direction: column; align-items: center; }
+      .preview-card { max-width: 100%; }
+      .alt-cards { flex-direction: column; align-items: center; }
+      .alt-card { max-width: 100%; }
+      h1 { font-size: 26px; }
+      .install-btn { padding: 14px 32px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">✦</div>
+    <h1>Claude Status Dark</h1>
+    <p class="subtitle">
+      Dark mode for the Claude status page.<br>
+      Warm colors. Easy on the eyes. One click to install.
+    </p>
+
+    <!-- Before / After -->
+    <div class="preview">
+      <div class="preview-card before">
+        <div class="label">Before</div>
+        <div class="mock">
+          <div><span class="dot gray-light"></span> All Systems Operational</div>
+          <div class="mock-bar" style="width:100%"></div>
+          <div><span class="dot gray-light"></span> claude.ai</div>
+          <div><span class="dot gray-light"></span> API</div>
+          <div class="mock-text-dim">Powered by Statuspage</div>
+        </div>
+      </div>
+      <div class="preview-card after">
+        <div class="label">After</div>
+        <div class="mock">
+          <div><span class="dot green"></span> All Systems Operational</div>
+          <div class="mock-bar" style="width:100%"></div>
+          <div><span class="dot green"></span> claude.ai</div>
+          <div><span class="dot yellow"></span> API</div>
+          <div class="mock-text-dim">Powered by Statuspage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main install -->
+    <div class="install-section">
+      <div id="detected-browser" class="detected"></div>
+
+      <a id="install-btn" class="install-btn" href="#">
+        Install Dark Theme
+      </a>
+
+      <div id="install-steps" class="steps" style="display:none;"></div>
+
+      <p class="install-hint">
+        Free and open source.
+        <a href="https://github.com/talkstream/claude-status-dark">View on GitHub</a>
+      </p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Alt browsers -->
+    <div class="alt-section">
+      <h2>Other Browsers</h2>
+      <div class="alt-cards">
+        <div class="alt-card" id="card-safari">
+          <div class="alt-icon">🧭</div>
+          <div class="alt-name">Safari</div>
+          <div class="alt-desc">
+            Install <a href="https://apps.apple.com/app/userscripts/id1463298887">Userscripts</a> from App Store, then click Install above
+          </div>
+        </div>
+        <div class="alt-card" id="card-chrome">
+          <div class="alt-icon">🌐</div>
+          <div class="alt-name">Chrome</div>
+          <div class="alt-desc">
+            Install <a href="https://www.tampermonkey.net/">Tampermonkey</a>, then click Install above
+          </div>
+        </div>
+        <div class="alt-card" id="card-firefox">
+          <div class="alt-icon">🦊</div>
+          <div class="alt-name">Firefox</div>
+          <div class="alt-desc">
+            Install <a href="https://www.tampermonkey.net/">Tampermonkey</a>, then click Install above
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- How it works -->
+    <div class="steps">
+      <h2 style="text-align:center; margin-bottom:20px; font-size:18px;">How It Works</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          Install a userscript manager for your browser
+          <div class="dim">Safari → Userscripts (free, App Store) · Chrome/Firefox → Tampermonkey</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          Click the <strong>Install Dark Theme</strong> button above
+          <div class="dim">Your userscript manager will ask you to confirm</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          Open <a href="https://status.claude.com" style="color:#4a9ce8; text-decoration:none;">status.claude.com</a> — it's dark now!
+          <div class="dim">Works automatically every time you visit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made with ✦ for Claude users ·
+    <a href="https://github.com/talkstream/claude-status-dark">GitHub</a> ·
+    <a href="https://github.com/talkstream/claude-status-dark/blob/main/LICENSE">MIT License</a>
+  </footer>
+
+  <script>
+    (function() {
+      var USERSCRIPT_URL = 'https://raw.githubusercontent.com/talkstream/claude-status-dark/main/userscript/claude-status-dark.user.js';
+
+      var btn = document.getElementById('install-btn');
+      var detected = document.getElementById('detected-browser');
+
+      // Detect browser
+      var ua = navigator.userAgent;
+      var browserName = 'your browser';
+      var managerName = 'Tampermonkey';
+      var managerUrl = 'https://www.tampermonkey.net/';
+
+      if (ua.indexOf('Safari') !== -1 && ua.indexOf('Chrome') === -1) {
+        browserName = 'Safari';
+        managerName = 'Userscripts';
+        managerUrl = 'https://apps.apple.com/app/userscripts/id1463298887';
+      } else if (ua.indexOf('Firefox') !== -1) {
+        browserName = 'Firefox';
+      } else if (ua.indexOf('Edg') !== -1) {
+        browserName = 'Edge';
+      } else if (ua.indexOf('Chrome') !== -1) {
+        browserName = 'Chrome';
+      }
+
+      detected.textContent = 'Detected: ' + browserName;
+      detected.classList.add('visible');
+
+      // Set install button
+      btn.href = USERSCRIPT_URL;
+
+      btn.addEventListener('click', function(e) {
+        // Userscript managers intercept .user.js URLs automatically
+        // If no manager installed, the raw JS file will download — harmless
+      });
+    })();
+  </script>
+</body>
+</html>

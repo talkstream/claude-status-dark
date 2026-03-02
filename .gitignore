@@ -1,0 +1,10 @@
+build/
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+node_modules/
+.DS_Store
+*.backup
+coverage/
+*.zip
