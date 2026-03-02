@@ -3,15 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claude Status Dark — Install</title>
-  <meta name="description" content="Dark mode for status.claude.com. Warm colors, easy on the eyes, one click to install.">
-  <meta property="og:title" content="Claude Status Dark">
-  <meta property="og:description" content="Dark mode for the Claude status page. Warm colors. Easy on the eyes.">
-  <meta property="og:url" content="https://talkstream.github.io/claude-status-dark/">
+  <title>Claude Status Dark — Dark Mode for status.claude.com</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Dark mode for the Claude status page. Warm colors, easy on the eyes, free and open source. Install in two clicks.">
+  <meta name="keywords" content="Claude, dark mode, status page, Anthropic, browser extension, userscript, dark theme">
+  <meta name="author" content="talkstream">
+  <link rel="canonical" href="https://talkstream.github.io/claude-status-dark/">
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Claude Status Dark">
-  <meta name="twitter:description" content="Dark mode for status.claude.com — warm palette, one click install.">
+  <meta property="og:url" content="https://talkstream.github.io/claude-status-dark/">
+  <meta property="og:title" content="Claude Status Dark — Your Eyes Deserve This">
+  <meta property="og:description" content="Dark mode for status.claude.com. Because checking if Claude is down shouldn't also burn your retinas. Free, open source, two-click install.">
+  <meta property="og:image" content="https://talkstream.github.io/claude-status-dark/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Claude Status Dark — Your Eyes Deserve This">
+  <meta name="twitter:description" content="Dark mode for status.claude.com. Because checking if Claude is down shouldn't also burn your retinas.">
+  <meta name="twitter:image" content="https://talkstream.github.io/claude-status-dark/og-image.png">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -23,6 +37,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
     }
 
     .container {
@@ -32,18 +47,84 @@
       text-align: center;
     }
 
-    .logo { font-size: 48px; margin-bottom: 8px; color: #c8a97a; }
+    a { color: #4a9ce8; text-decoration: none; }
+    a:hover { color: #c8a97a; }
 
-    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #e8e4de; }
+    /* ====== SPARKLE MASCOT ====== */
+    .mascot {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px;
+    }
+
+    .mascot-body {
+      font-size: 56px;
+      color: #c8a97a;
+      animation: float 3s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    .mascot-status {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 16px;
+      height: 16px;
+      background: #8cc63f;
+      border-radius: 50%;
+      border: 3px solid #1a1816;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(140, 198, 63, 0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(140, 198, 63, 0); }
+    }
+
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fade-in-up 0.6s ease-out both;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
+    .delay-5 { animation-delay: 0.65s; }
+
+    /* ====== HEADER ====== */
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #e8e4de;
+    }
 
     .subtitle {
       font-size: 16px;
       color: #9b9790;
-      margin-bottom: 40px;
-      line-height: 1.5;
+      margin-bottom: 8px;
+      line-height: 1.6;
     }
 
-    /* Before / After */
+    .tagline {
+      font-size: 13px;
+      color: #5a5852;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    /* ====== BEFORE / AFTER ====== */
     .preview {
       display: flex;
       gap: 12px;
@@ -57,6 +138,12 @@
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid #3a3734;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
 
     .preview-card .label {
@@ -96,10 +183,9 @@
     .mock-bar { height: 6px; border-radius: 3px; margin: 4px 0; }
     .preview-card.before .mock-bar { background: #dedcd1; }
     .preview-card.after .mock-bar { background: #3a3734; }
-
     .mock-text-dim { opacity: 0.5; font-size: 10px; }
 
-    /* Install wizard */
+    /* ====== INSTALL WIZARD ====== */
     .install-section { margin-bottom: 32px; }
 
     .detected {
@@ -128,14 +214,8 @@
       transition: border-color 0.2s, opacity 0.3s;
     }
 
-    .wizard-step.active {
-      border-color: #c8a97a;
-    }
-
-    .wizard-step.done {
-      border-color: #8cc63f;
-      opacity: 0.7;
-    }
+    .wizard-step.active { border-color: #c8a97a; }
+    .wizard-step.done { border-color: #8cc63f; opacity: 0.7; }
 
     .wizard-step .step-icon {
       flex-shrink: 0;
@@ -153,10 +233,7 @@
       transition: all 0.2s;
     }
 
-    .wizard-step.active .step-icon {
-      border-color: #c8a97a;
-      color: #c8a97a;
-    }
+    .wizard-step.active .step-icon { border-color: #c8a97a; color: #c8a97a; }
 
     .wizard-step.done .step-icon {
       border-color: #8cc63f;
@@ -164,10 +241,7 @@
       color: #1a1816;
     }
 
-    .wizard-step .step-content {
-      flex: 1;
-      min-width: 0;
-    }
+    .wizard-step .step-content { flex: 1; min-width: 0; }
 
     .wizard-step .step-title {
       font-size: 14px;
@@ -191,23 +265,15 @@
       border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+      transition: transform 0.15s, box-shadow 0.15s;
       display: inline-block;
     }
 
-    .wizard-step .step-btn:hover {
-      transform: translateY(-1px);
-    }
+    .wizard-step .step-btn:hover { transform: translateY(-1px); }
 
-    .step-btn.btn-manager {
-      background: #4a9ce8;
-      color: #fff;
-    }
-
-    .step-btn.btn-install {
-      background: linear-gradient(135deg, #c8a97a, #e0c99a);
-      color: #1a1816;
-    }
+    .step-btn.btn-manager { background: #4a9ce8; color: #fff; }
+    .step-btn.btn-install { background: linear-gradient(135deg, #c8a97a, #e0c99a); color: #1a1816; }
+    .step-btn.btn-install:hover { box-shadow: 0 4px 16px rgba(200, 169, 122, 0.3); }
 
     .step-btn.btn-disabled {
       background: #3a3734;
@@ -216,11 +282,6 @@
       pointer-events: none;
     }
 
-    .step-btn.btn-install:hover {
-      box-shadow: 0 4px 16px rgba(200, 169, 122, 0.3);
-    }
-
-    /* "I already have it" link */
     .skip-link {
       font-size: 12px;
       color: #5a5852;
@@ -234,9 +295,7 @@
       display: inline-block;
     }
 
-    .skip-link:hover {
-      color: #9b9790;
-    }
+    .skip-link:hover { color: #9b9790; }
 
     .install-hint {
       font-size: 13px;
@@ -244,27 +303,78 @@
       line-height: 1.6;
     }
 
-    .install-hint a {
-      color: #4a9ce8;
-      text-decoration: none;
+    /* ====== FALLBACK ====== */
+    .fallback {
+      display: none;
+      max-width: 420px;
+      margin: 16px auto 0;
+      text-align: left;
+      background: #242220;
+      border: 1px solid #3a3734;
+      border-radius: 12px;
+      padding: 16px 20px;
+      animation: fade-in-up 0.4s ease-out;
     }
 
-    .install-hint a:hover { color: #c8a97a; }
+    .fallback.visible { display: block; }
 
-    /* Divider */
+    .fallback h3 {
+      font-size: 14px;
+      color: #fbb44c;
+      margin-bottom: 10px;
+    }
+
+    .fallback ol {
+      margin: 0;
+      padding-left: 20px;
+      color: #e8e4de;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .fallback ol code {
+      color: #c8a97a;
+      background: #1a1816;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .fallback .url-box {
+      display: block;
+      margin: 6px 0;
+      padding: 8px 12px;
+      background: #1a1816;
+      border: 1px solid #3a3734;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #c8a97a;
+      word-break: break-all;
+      font-family: monospace;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .fallback .url-box:hover { border-color: #c8a97a; }
+
+    .fallback .fallback-note {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #5a5852;
+    }
+
+    /* ====== DIVIDER ====== */
     .divider {
       border: none;
       border-top: 1px solid #3a3734;
-      margin: 32px 0;
+      margin: 36px 0;
     }
 
-    /* Share / Virality */
-    .share-section {
-      margin-bottom: 32px;
-    }
+    /* ====== SHARE ====== */
+    .share-section { margin-bottom: 32px; }
 
     .share-section h2 {
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 6px;
       color: #e8e4de;
     }
@@ -273,6 +383,7 @@
       font-size: 14px;
       color: #9b9790;
       margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     .share-buttons {
@@ -302,27 +413,65 @@
       border-color: #c8a97a;
       background: #2a2826;
       transform: translateY(-1px);
+      color: #e8e4de;
     }
 
-    .share-btn .share-icon {
-      font-size: 16px;
-    }
-
+    .share-btn .share-icon { font-size: 16px; }
     .share-btn.x-btn:hover { border-color: #e8e4de; }
     .share-btn.reddit-btn:hover { border-color: #ff4500; }
     .share-btn.copy-btn:hover { border-color: #8cc63f; }
-    .share-btn.copy-btn.copied {
-      border-color: #8cc63f;
-      color: #8cc63f;
-    }
+    .share-btn.copy-btn.copied { border-color: #8cc63f; color: #8cc63f; }
 
-    .share-counter {
+    .share-quip {
       margin-top: 16px;
       font-size: 12px;
       color: #5a5852;
+      font-style: italic;
     }
 
-    /* Footer */
+    /* ====== FAQ ====== */
+    details {
+      text-align: left;
+      max-width: 480px;
+      margin: 0 auto 16px;
+      background: #242220;
+      border: 1px solid #3a3734;
+      border-radius: 10px;
+      padding: 0 16px;
+    }
+
+    details + details { margin-top: 8px; }
+
+    summary {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8e4de;
+      padding: 14px 0;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::before {
+      content: '+ ';
+      color: #c8a97a;
+      font-weight: 400;
+    }
+
+    details[open] summary::before { content: '- '; }
+
+    details .answer {
+      padding: 0 0 14px;
+      color: #9b9790;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    details .answer strong { color: #e8e4de; }
+    details .answer code { color: #c8a97a; }
+
+    /* ====== FOOTER ====== */
     footer {
       margin-top: auto;
       padding: 24px;
@@ -331,14 +480,10 @@
       color: #5a5852;
     }
 
-    footer a {
-      color: #9b9790;
-      text-decoration: none;
-    }
-
+    footer a { color: #9b9790; text-decoration: none; }
     footer a:hover { color: #c8a97a; }
 
-    /* Responsive */
+    /* ====== RESPONSIVE ====== */
     @media (max-width: 520px) {
       .preview { flex-direction: column; align-items: center; }
       .preview-card { max-width: 100%; }
@@ -352,17 +497,27 @@
 </head>
 <body>
   <div class="container">
-    <div class="logo">✦</div>
-    <h1>Claude Status Dark</h1>
-    <p class="subtitle">
+
+    <!-- Mascot -->
+    <div class="mascot fade-in">
+      <span class="mascot-body">✦</span>
+      <span class="mascot-status"></span>
+    </div>
+
+    <h1 class="fade-in delay-1">Claude Status Dark</h1>
+
+    <p class="subtitle fade-in delay-2">
       Dark mode for the Claude status page.<br>
-      Warm colors. Easy on the eyes. Two clicks to install.
+      Because staring at a white screen while Claude is down<br>
+      is adding insult to injury.
     </p>
 
+    <p class="tagline fade-in delay-2">"At least the outage looks pretty now."</p>
+
     <!-- Before / After -->
-    <div class="preview">
+    <div class="preview fade-in delay-3">
       <div class="preview-card before">
-        <div class="label">Before</div>
+        <div class="label">Before (ouch)</div>
         <div class="mock">
           <div><span class="dot gray-light"></span> All Systems Operational</div>
           <div class="mock-bar" style="width:100%"></div>
@@ -372,7 +527,7 @@
         </div>
       </div>
       <div class="preview-card after">
-        <div class="label">After</div>
+        <div class="label">After (ahh)</div>
         <div class="mock">
           <div><span class="dot green"></span> All Systems Operational</div>
           <div class="mock-bar" style="width:100%"></div>
@@ -384,7 +539,7 @@
     </div>
 
     <!-- Install wizard -->
-    <div class="install-section">
+    <div class="install-section fade-in delay-4">
       <div id="detected-browser" class="detected"></div>
 
       <div class="install-steps-wizard">
@@ -393,7 +548,7 @@
           <div class="step-icon">1</div>
           <div class="step-content">
             <div class="step-title">Get <span id="manager-name">Tampermonkey</span></div>
-            <div class="step-desc">Free <span id="manager-type">extension</span> that enables userscripts</div>
+            <div class="step-desc">Free <span id="manager-type">extension</span>. Takes 10 seconds.</div>
             <button id="skip-step1" class="skip-link">I already have it</button>
           </div>
           <a id="manager-btn" class="step-btn btn-manager" href="https://www.tampermonkey.net/" target="_blank" rel="noopener">
@@ -406,11 +561,43 @@
           <div class="step-icon">2</div>
           <div class="step-content">
             <div class="step-title">Install Dark Theme</div>
-            <div class="step-desc">Click and confirm in the popup that appears</div>
+            <div class="step-desc">One click. Your eyes will thank you.</div>
           </div>
           <a id="install-btn" class="step-btn btn-disabled" href="#">
             Install
           </a>
+        </div>
+      </div>
+
+      <!-- Safari fallback: shown after clicking Install -->
+      <div id="fallback-safari" class="fallback">
+        <h3>Seeing plain text? No worries!</h3>
+        <ol>
+          <li>Click the <strong>Userscripts icon</strong> in Safari toolbar</li>
+          <li>Click <code>Open Extension Page</code></li>
+          <li>Click <code>+</code> in the top-left corner</li>
+          <li>Select <code>New Remote</code></li>
+          <li>
+            Paste this URL and save:
+            <span id="url-box-safari" class="url-box" title="Click to copy"></span>
+          </li>
+        </ol>
+        <div class="fallback-note">
+          Done! Visit <a href="https://status.claude.com">status.claude.com</a> — it should be dark now.
+        </div>
+      </div>
+
+      <!-- Chrome/Firefox/Edge fallback -->
+      <div id="fallback-other" class="fallback">
+        <h3>Seeing plain text? Here's the fix:</h3>
+        <ol>
+          <li>Make sure <strong id="fallback-manager">Tampermonkey</strong> is installed and enabled</li>
+          <li>Click the <strong>Tampermonkey icon</strong> in your toolbar</li>
+          <li>Select <code>Create a new script</code></li>
+          <li>Delete the template code, paste <a id="fallback-script-link" href="#">the script from here</a>, save</li>
+        </ol>
+        <div class="fallback-note">
+          Done! Visit <a href="https://status.claude.com">status.claude.com</a> — enjoy the darkness.
         </div>
       </div>
 
@@ -422,57 +609,81 @@
 
     <hr class="divider">
 
-    <!-- Share section -->
-    <div class="share-section">
+    <!-- Share -->
+    <div class="share-section fade-in delay-5">
       <h2>Make the world darker</h2>
-      <p class="share-tagline">Help fellow Claude users save their retinas. Share this page.</p>
+      <p class="share-tagline">
+        Know someone who obsessively refreshes status.claude.com at 2 AM?<br>
+        Their retinas will thank you.
+      </p>
 
       <div class="share-buttons">
         <a id="share-x" class="share-btn x-btn" href="#" target="_blank" rel="noopener">
           <span class="share-icon">𝕏</span> Post on X
         </a>
         <a id="share-reddit" class="share-btn reddit-btn" href="#" target="_blank" rel="noopener">
-          <span class="share-icon">↗</span> Share on Reddit
+          <span class="share-icon">&#8599;</span> Share on Reddit
         </a>
         <button id="share-copy" class="share-btn copy-btn">
-          <span class="share-icon">⎘</span> <span id="copy-label">Copy Link</span>
+          <span class="share-icon">&#9112;</span> <span id="copy-label">Copy Link</span>
         </button>
       </div>
 
-      <div class="share-counter">
-        Every share saves an eyeball. Probably two, actually.
-      </div>
+      <p class="share-quip">Every share saves an eyeball. Probably two, actually.</p>
     </div>
 
     <hr class="divider">
 
-    <!-- How it works (collapsed FAQ style) -->
-    <details style="text-align:left; max-width:480px; margin:0 auto 32px;">
-      <summary style="cursor:pointer; font-size:16px; font-weight:600; color:#e8e4de; padding:8px 0;">
-        How does it work?
-      </summary>
-      <div style="padding:12px 0; color:#9b9790; font-size:14px; line-height:1.7;">
-        A <strong style="color:#e8e4de;">userscript manager</strong> is a tiny browser extension
-        that can inject custom styles into websites. We use it to replace the bright white
-        theme on <code style="color:#c8a97a;">status.claude.com</code> with a warm dark palette.<br><br>
-        The script runs only on the Claude status page &mdash; nowhere else. It's
-        <a href="https://github.com/talkstream/claude-status-dark" style="color:#4a9ce8; text-decoration:none;">fully open source</a>,
-        so you can inspect every line.
+    <!-- FAQ -->
+    <details class="fade-in delay-5">
+      <summary>What does this actually do?</summary>
+      <div class="answer">
+        Replaces the bright white theme on <code>status.claude.com</code> with a
+        <strong>warm dark palette</strong>. Same info, much easier on the eyes &mdash;
+        especially at 2 AM when you're wondering why Claude went quiet mid-conversation.
+      </div>
+    </details>
+
+    <details>
+      <summary>Is it safe?</summary>
+      <div class="answer">
+        100% open source. It's a CSS theme with a small script that handles dynamic
+        elements. No tracking, no data collection, no network requests.
+        <a href="https://github.com/talkstream/claude-status-dark">Read every line yourself.</a>
+      </div>
+    </details>
+
+    <details>
+      <summary>Does it work on my browser?</summary>
+      <div class="answer">
+        <strong>Safari</strong> (via Userscripts app), <strong>Chrome, Edge, Brave</strong>
+        (via Tampermonkey), and <strong>Firefox</strong> (via Tampermonkey).
+        Basically everything except Internet Explorer, but if you're using IE,
+        dark mode is the least of your problems.
+      </div>
+    </details>
+
+    <details>
+      <summary>Will it break the status page?</summary>
+      <div class="answer">
+        Nope. It only changes colors. All status information, links, and functionality
+        remain exactly the same. If anything breaks, just disable the script.
       </div>
     </details>
   </div>
 
   <footer>
-    Made with ✦ for Claude users ·
+    Made with ✦ for Claude users who deserve better than a white screen at midnight ·
     <a href="https://github.com/talkstream/claude-status-dark">GitHub</a> ·
     <a href="https://github.com/talkstream/claude-status-dark/blob/main/LICENSE">MIT License</a>
   </footer>
 
   <script>
     (function() {
-      var USERSCRIPT_URL = 'https://raw.githubusercontent.com/talkstream/claude-status-dark/main/userscript/claude-status-dark.user.js';
+      // GitHub Pages URL — correct MIME type (application/javascript)
+      var USERSCRIPT_URL = 'https://talkstream.github.io/claude-status-dark/claude-status-dark.user.js';
       var PAGE_URL = 'https://talkstream.github.io/claude-status-dark/';
-      var SHARE_TEXT = 'Dark mode for the Claude status page — warm colors, one-click install. Your retinas will thank you.';
+      var SHARE_TEXT = 'Dark mode for status.claude.com \u2014 because checking if Claude is down shouldn\u2019t also burn your retinas. Free, two-click install:';
 
       // Elements
       var step1 = document.getElementById('step-1');
@@ -484,18 +695,43 @@
       var managerTypeEl = document.getElementById('manager-type');
       var detected = document.getElementById('detected-browser');
 
+      var fallbackSafari = document.getElementById('fallback-safari');
+      var fallbackOther = document.getElementById('fallback-other');
+      var urlBoxSafari = document.getElementById('url-box-safari');
+      var fallbackManager = document.getElementById('fallback-manager');
+      var fallbackScriptLink = document.getElementById('fallback-script-link');
+
+      // Set the URL in fallback boxes
+      urlBoxSafari.textContent = USERSCRIPT_URL;
+      fallbackScriptLink.href = USERSCRIPT_URL;
+
+      // Click-to-copy on Safari URL box
+      urlBoxSafari.addEventListener('click', function() {
+        navigator.clipboard.writeText(USERSCRIPT_URL).then(function() {
+          var original = urlBoxSafari.textContent;
+          urlBoxSafari.textContent = 'Copied!';
+          urlBoxSafari.style.color = '#8cc63f';
+          setTimeout(function() {
+            urlBoxSafari.textContent = original;
+            urlBoxSafari.style.color = '';
+          }, 1500);
+        });
+      });
+
       // Detect browser
       var ua = navigator.userAgent;
       var browserName = 'your browser';
       var managerName = 'Tampermonkey';
       var managerUrl = 'https://www.tampermonkey.net/';
       var managerType = 'extension';
+      var isSafari = false;
 
       if (ua.indexOf('Safari') !== -1 && ua.indexOf('Chrome') === -1) {
         browserName = 'Safari';
         managerName = 'Userscripts';
         managerUrl = 'https://apps.apple.com/app/userscripts/id1463298887';
         managerType = 'app (free on App Store)';
+        isSafari = true;
       } else if (ua.indexOf('Firefox') !== -1) {
         browserName = 'Firefox';
         managerUrl = 'https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/';
@@ -511,12 +747,13 @@
       managerNameEl.textContent = managerName;
       managerTypeEl.textContent = managerType;
       managerBtn.href = managerUrl;
+      fallbackManager.textContent = managerName;
 
-      // Step 1 → Step 2 transition
+      // Step 1 -> Step 2 transition
       function activateStep2() {
         step1.classList.remove('active');
         step1.classList.add('done');
-        step1.querySelector('.step-icon').textContent = '✓';
+        step1.querySelector('.step-icon').textContent = '\u2713';
         skipBtn.style.display = 'none';
 
         step2.classList.add('active');
@@ -525,15 +762,24 @@
         installBtn.classList.add('btn-install');
       }
 
-      // When they click the manager link, wait a moment then activate step 2
       managerBtn.addEventListener('click', function() {
         setTimeout(activateStep2, 1500);
       });
 
-      // Skip link for users who already have a manager
       skipBtn.addEventListener('click', function(e) {
         e.preventDefault();
         activateStep2();
+      });
+
+      // Show browser-specific fallback after clicking Install
+      installBtn.addEventListener('click', function() {
+        setTimeout(function() {
+          if (isSafari) {
+            fallbackSafari.classList.add('visible');
+          } else {
+            fallbackOther.classList.add('visible');
+          }
+        }, 3000);
       });
 
       // Share buttons
@@ -543,7 +789,7 @@
       var copyLabel = document.getElementById('copy-label');
 
       shareX.href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT) + '&url=' + encodeURIComponent(PAGE_URL);
-      shareReddit.href = 'https://www.reddit.com/submit?url=' + encodeURIComponent(PAGE_URL) + '&title=' + encodeURIComponent('Claude Status Dark — dark mode for status.claude.com');
+      shareReddit.href = 'https://www.reddit.com/submit?url=' + encodeURIComponent(PAGE_URL) + '&title=' + encodeURIComponent('Claude Status Dark \u2014 dark mode for status.claude.com');
 
       shareCopy.addEventListener('click', function() {
         navigator.clipboard.writeText(PAGE_URL).then(function() {

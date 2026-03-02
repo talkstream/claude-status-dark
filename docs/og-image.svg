@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#1a1816"/>
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#242220" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
+  <!-- Glow behind sparkle -->
+  <circle cx="600" cy="240" r="120" fill="#c8a97a" opacity="0.06"/>
+  <circle cx="600" cy="240" r="70" fill="#c8a97a" opacity="0.08"/>
+  <!-- Sparkle icon -->
+  <circle cx="600" cy="240" r="40" fill="none" stroke="#c8a97a" stroke-width="3"/>
+  <circle cx="600" cy="196" r="5" fill="#c8a97a"/>
+  <circle cx="638" cy="218" r="5" fill="#c8a97a"/>
+  <circle cx="638" cy="262" r="5" fill="#c8a97a"/>
+  <circle cx="600" cy="284" r="5" fill="#c8a97a"/>
+  <circle cx="562" cy="262" r="5" fill="#c8a97a"/>
+  <circle cx="562" cy="218" r="5" fill="#c8a97a"/>
+  <circle cx="600" cy="240" r="8" fill="#c8a97a"/>
+  <!-- Status dot -->
+  <circle cx="640" cy="278" r="12" fill="#1a1816"/>
+  <circle cx="640" cy="278" r="8" fill="#8cc63f"/>
+  <!-- Title -->
+  <text x="600" y="370" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="48" font-weight="700" fill="#e8e4de" text-anchor="middle">Claude Status Dark</text>
+  <!-- Subtitle -->
+  <text x="600" y="420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#9b9790" text-anchor="middle">Dark mode for status.claude.com</text>
+  <!-- Bottom tagline -->
+  <text x="600" y="530" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" fill="#5a5852" text-anchor="middle">Warm palette · One-click install · Free &amp; open source</text>
+  <!-- Small color palette dots at bottom -->
+  <circle cx="480" cy="570" r="8" fill="#8cc63f"/>
+  <circle cx="510" cy="570" r="8" fill="#fbb44c"/>
+  <circle cx="540" cy="570" r="8" fill="#f07850"/>
+  <circle cx="570" cy="570" r="8" fill="#ef5555"/>
+  <circle cx="600" cy="570" r="8" fill="#4a9ce8"/>
+  <circle cx="630" cy="570" r="8" fill="#c8a97a"/>
+  <circle cx="660" cy="570" r="8" fill="#3a3734"/>
+  <circle cx="690" cy="570" r="8" fill="#242220"/>
+  <circle cx="720" cy="570" r="8" fill="#e8e4de"/>
+</svg>
